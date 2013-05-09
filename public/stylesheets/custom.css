@@ -1,0 +1,17 @@
+/* custom.css
+ * author: Chris Augier
+ * created date: 05/05/2013
+ * modified date: 05/05/2013
+ */
+
+.body{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.title {
+	font-size: 72px;
+}
+
+.header p {
+	text-align: right;
+}
