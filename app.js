@@ -9,55 +9,56 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , login = require('./routes/login')
-  , internal_index = require('./routes/internal_index');
+  , backroom = require('./routes/backroom')
+  , express = require('express')
+  , coll_model = require('./routes/connection').coll_model
+  , passport = require('./routes/connection').passport
+  , FacebookClient = require('facebook-client').FacebookClient;
 
 var app = express();
 
-//connect to mongodb instance
-//var dbconn = mongoose.connect('mongodb://administrator:frontRoomYall@dharma.mongohq.com:10063/frontRoom');
-//module.exports.mongoose = mongoose;
-
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);    //be listening on port 3000
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');    //using EJS as the view renderer
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({ secret: 'This is the godamn freakin secret!'}));  //should probably change this
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+exports.session = express.session;    //is this still needed?
+
+/* Set up the URL endpoints */
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.post('/users', user.addUser);
-app.get('/login', login.loadLogin);
-app.post('/login', login.userLogin);
-app.get('/internal_index', internal_index.userWelcome);
+app.get('/backroom', backroom.userWelcome);
+app.post('/backroom', backroom.postTune);
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', { successRedirect: '/',
+                                      failureRedirect: '/login' }));
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 
-
-/*Schemas*/
-
-var Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId;
-
-var BlogPost = new Schema({
-    author    	: {type: ObjectId},
-    title     	: {type: String},
-    body      	: {type: String},
-    tags		: {type: String},
-    musicPlayerLink : {type: String},
-    date      	: {type: Date}
+/*
+ *Start the server on port specified above
+ */
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
 });

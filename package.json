@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "frontRoom",
+  "version": "0.0.1-11",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -8,6 +8,14 @@
   "dependencies": {
     "express": "3.2.1",
     "ejs": "*",
-    "mongoose" : "3.6.9"
+    "mongoose": "3.6.9",
+    "passport": "0.1.16",
+    "passport-facebook": "*",
+    "connect-flash": "*",
+    "facebook-client": "1.6.1"
+  },
+  "subdomain": "augier-frontRoom",
+  "engines": {
+    "node": "0.8.x"
   }
 }

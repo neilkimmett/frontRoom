@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>frontRoom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type="text/css" href="stylesheets/grid.css"/>
     <link rel='stylesheet' type="text/css" href="stylesheets/normalize.css"/>
     <link rel='stylesheet' type="text/css" href="stylesheets/style.css"/>
   <body>
+    <div class="menu">
+      <div class="login">
+        <a href="<%= headerUrl%>"><%= rubric%></a>
+        <a href='/logout'><%= logout%></a>
+      </div>
+      <ul class="navigation">
+            <li data-slide="1">Home</li>
+            <li data-slide="2">Tunes</li>
+            <li data-slide="3">Podcasts</li>
+      </ul>
+    </div>
     <div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
       <div class="container clearfix">
         <div id="header" class="grid_7">
@@ -14,45 +25,36 @@
           <h2>...don't go in the back room.</h2>
           <p><i>"Let an accomplished man try what seems to him most obvious, most certain, most palpable in (musical) matters, upon the housemaid and the footman, and he will find that what he says seems unintelligible, confused and erroneous - that his audience think him mad and wild when he is speaking what is in his own sphere of thought the dullest platitude of cautious soberness." </i> - Bagehot</p>
         </div>
-        <ul class="navigation">
-          <li data-slide="1">Tunes</li>
-          <li data-slide="2">Collaborators</li>
-          <li data-slide="3">Blog</li>
-          <li data-slide="4">About</li>
-        </ul>
       </div>
     </div>
     <div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.5">
       <div class="container clearfix">
         <h1>Tunes</h1>
         <h2>Latest reviews</h2>
-        <div class="grid_5">
-          <h3>Omar S - Thank you</h3>
-          <p>It feels like a change in direction for an artist whose blocky, proto-house compositions resembled Kraftwerk as often as, say, Derrick Carter, and parts of Thank You feel like homages to classic house tropes. "The Shit Baby" features a deft, familiar piano solo. "Rewind" is salty, low-overhead R&B. "Air of the Day" unfurls slowly, spreading slowly evolving pads over a hearty baseline and ratcheting up a level with staccato synth blasts in its final minute. The album's title rings true because Omar is an artist for whom fans do suffer inconvenience-- namely poor distribution and limited runs.</p>
-        </div>
+        <% for(var i=0; i<tunes.length; i++) { %>
+          <div class="grid_5 tune">
+            <h3><%= tunes[i].title %></h3>
+            <p><%= tunes[i].summary %></p>
+            <p>Posted by <%= tunes[i].authorName %></p>
+            <%- tunes[i].musicPlayerLink %>
+            <a href="/<%= tunes[i].id%>">Read more...</a>
+          </div>
+        <% } %>
       </div>
     </div>
     <div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
       <div class="container clearfix">
-        <h1>Collaborators</h1>
+        <h1>Podcasts</h1>
         <div class="grid_3">
-          <h2>Neil Kimmett</h2>
+          <h2>Podcast 1</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat hendrerit ipsum, ut iaculis sapien vestibulum sed. Sed pretium nunc ut lectus pulvinar ut viverra est elementum. Pellentesque in nisl at orci sodales auctor a at nisl. Nulla eget ipsum a nulla facilisis tincidunt. Vivamus vitae metus et erat varius bibendum aliquam in velit. Morbi faucibus placerat dui a malesuada. Phasellus sollicitudin urna enim. Integer vehicula, nisi eu dignissim suscipit, nunc ligula tristique lorem, ac tempus magna neque a neque. Donec hendrerit magna eu.</p>
-        </div>
-        <div class="grid_3">
-          <h2>Samuel Simms</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat hendrerit ipsum, ut iaculis sapien vestibulum sed. Sed pretium nunc ut lectus pulvinar ut viverra est elementum. Pellentesque in nisl at orci sodales auctor a at nisl. Nulla eget ipsum a nulla facilisis tincidunt. Vivamus vitae metus et erat varius bibendum aliquam in velit. Morbi faucibus placerat dui a malesuada. Curabitur euismod molestie augue id elementum. Proin venenatis neque ac augue rutrum non fringilla velit imperdiet. Phasellus sollicitudin urna enim. </p>
-        </div>
-        <div class="grid_3">
-          <h2>Chris Brown</h2>
-          <p>Sed pretium nunc ut lectus pulvinar ut viverra est elementum. Pellentesque in nisl at orci sodales auctor a at nisl. Nulla eget ipsum a nulla facilisis tincidunt. Vivamus vitae metus et erat varius bibendum aliquam in velit. Morbi faucibus placerat dui a malesuada. Curabitur euismod molestie augue id elementum. Proin venenatis neque ac augue rutrum non fringilla velit imperdiet. Phasellus sollicitudin urna enim. Integer vehicula, nisi eu dignissim suscipit, nunc ligula tristique lorem, ac tempus magna neque a neque. Donec hendrerit magna eu.</p>
         </div>
       </div>
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
-    <script type="text/javascript" src="js/waypoints.min.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="javascripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="javascripts/scripts.js"></script>
   </body>
 </html>

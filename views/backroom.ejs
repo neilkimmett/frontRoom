@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>backRoom. Welcome <%= name %></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel='stylesheet' type="text/css" href="stylesheets/grid.css"/>
+	    <link rel='stylesheet' type="text/css" href="stylesheets/normalize.css"/>
+	    <link rel='stylesheet' type="text/css" href="stylesheets/style.css"/>
+	</head>
+	<body>
+    <div class="menu">
+      <div class="login">
+        <a href='/logout'>logout</a>
+      </div>
+      <ul class="navigation">
+        <li data-slide="3">Post a tune</li>
+        <li data-slide="2">Invite a frontRoomer</li>
+        <li data-slide="4">Send bug report</li>
+      </ul>
+    </div>
+		<div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
+      <div class="container clearfix">
+        <div id="header" class="grid_7">
+          <h1>backRoom</h1>
+          <h2>Welcome <%= name%></h2>
+          <p>This is the place to update your details, add users and most importantly, post tunes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.5">
+      <div class="container clearfix">
+        <div id="header" class="grid_12">
+          <h1>Submit a post</h1>
+          <p>Enter the required information and press send</p>
+        </div>
+        <div class="grid_5">
+          <form name="blog_post" method="post">
+              <div class="formrow">
+                <label for="title">Title:</label>
+                <input name="title"/>
+              </div>
+              <div class="formrow">
+                <label for="body">Body:</label>
+                <textarea name="body" rows="10" cols="30"></textarea>
+              </div>
+              <div class="formrow">
+                <label for="tags">Tags:<label>
+                <input name="tags"/>
+              </div>
+              <div class="formrow">
+                <label for="link">Music Player Link:<label>
+                <input name="link"/>
+              </div>
+              <div class="formrow">
+                <input type="submit" value="Send">
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="javascripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="javascripts/scripts.js"></script>
+	</body>
+</html>

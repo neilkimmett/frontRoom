@@ -2,12 +2,19 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type="text/css" href="stylesheets/bootstrap.css"/>
+    <link rel='stylesheet' type="text/css" href="stylesheets/bootstrap-responsive.css"/>
   </head>
   <body>
-  	<form name="login" method="post">
-	  	<input name="username"/>
-	  	<input name="password"/>
-	  	<input type="submit" value="Send">
-	</form>
+  	<div class="span9">
+	  	<form name="login" method="post">
+	  		<label for="username">User name: </label>
+		  	<input name="username"/>
+		  	<label for"password">Password</label>
+		  	<input type="password" name="password"/>
+		  	<input type="submit" value="Send">
+		</form>
+	</div>
   </body>
  </html>
