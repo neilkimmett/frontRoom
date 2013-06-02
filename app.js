@@ -6,6 +6,7 @@
 var express = require('express')
   , mongoose = require('mongoose')
   , routes = require('./routes')
+  , tunes = require('./routes/tunes')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
@@ -45,6 +46,7 @@ app.get('/users', user.list);
 app.post('/users', user.addUser);
 app.get('/backroom', backroom.userWelcome);
 app.post('/backroom', backroom.postTune);
+app.get('/tunes', tunes.tune)
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { successRedirect: '/',

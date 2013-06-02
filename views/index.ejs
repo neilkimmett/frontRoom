@@ -31,15 +31,8 @@
       <div class="container clearfix">
         <h1>Tunes</h1>
         <h2>Latest reviews</h2>
-        <% for(var i=0; i<tunes.length; i++) { %>
-          <div class="grid_5 tune">
-            <h3><%= tunes[i].title %></h3>
-            <p><%= tunes[i].summary %></p>
-            <p>Posted by <%= tunes[i].authorName %></p>
-            <%- tunes[i].musicPlayerLink %>
-            <a href="/<%= tunes[i].id%>">Read more...</a>
-          </div>
-        <% } %>
+        <!-- This div gets replaced the tunes! -->
+        <div id="tunecontainer"/>
       </div>
     </div>
     <div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
@@ -56,5 +49,12 @@
     <script type="text/javascript" src="javascripts/waypoints.min.js"></script>
     <script type="text/javascript" src="javascripts/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="javascripts/scripts.js"></script>
+    <script>
+    $(document).ready(function() {
+       $.get("/tunes",function(data,status){
+        $('#tunecontainer').html(data);
+    });
+    });
+    </script>
   </body>
 </html>

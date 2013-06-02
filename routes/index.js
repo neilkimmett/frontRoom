@@ -36,8 +36,8 @@ exports.index = function(req, res)
 };
 
 /*
-ejs.Helpers.prototype.render_tune_with_data = function(entry){
-
+exports.tune = function(req, res)
+{
   blog_model.find({}, function(err, tunes) 
   {
     console.log('tunes: ' + tunes);
