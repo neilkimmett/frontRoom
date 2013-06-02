@@ -3,10 +3,12 @@
  *  Export variables at the bottom
  */
 
-var mongoose = require('mongoose'); //Requires mongoose
-var passport = require('passport')
-    ,FacebookStrategy = require('passport-facebook').Strategy;
-var dbconn = mongoose.connect('mongodb://administrator:frontRoomYall@dharma.mongohq.com:10063/frontRoom');	//connect to mongodb instance
+var mongoose = require('mongoose') //Requires mongoose
+    , passport = require('passport')
+    , FacebookStrategy = require('passport-facebook').Strategy
+    , connectionString = require('./secrets').connectionString;
+    
+var dbconn = mongoose.connect(connectionString);	//connect to mongodb instance
 
 /*Define all schemas here*/
 var Schema = mongoose.Schema
