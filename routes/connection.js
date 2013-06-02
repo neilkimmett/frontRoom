@@ -6,8 +6,10 @@
 var mongoose = require('mongoose') //Requires mongoose
     , passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy
-    , connectionString = require('./secrets').connectionString;
-    
+    , connectionString = require('./secrets').connectionString
+    , clientID = require('./secrets').clientID
+    , clientSecret = require('./secrets').clientSecret;
+
 var dbconn = mongoose.connect(connectionString);	//connect to mongodb instance
 
 /*Define all schemas here*/
@@ -41,8 +43,8 @@ var BlogPost = new Schema({
  * Curently logs into Augier's made up facebook App.
  */
 passport.use(new FacebookStrategy({
-    clientID: "507106689338312",
-    clientSecret: "3cdb0e280993142d6c94e6cfb9a94af0",
+    clientID: clientID,
+    clientSecret: clientSecret,
     callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
