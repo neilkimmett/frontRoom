@@ -29,7 +29,7 @@
     </div>
     <div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.5">
       <div class="container clearfix">
-        <div id="header" class="grid_12">
+        <div id="header" class="grid_8">
           <h1>Submit a post</h1>
           <p>Enter the required information and press send</p>
         </div>
@@ -52,10 +52,12 @@
                 <input name="link"/>
               </div>
               <div class="formrow">
+                <input type="button" id="loadpreview" value="Preview"/>
                 <input type="submit" value="Send">
               </div>
           </form>
         </div>
+         <div id="previewarea"/>
       </div>
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -63,5 +65,33 @@
     <script type="text/javascript" src="javascripts/waypoints.min.js"></script>
     <script type="text/javascript" src="javascripts/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="javascripts/scripts.js"></script>
+    <script type="text/javascript">
+    $('#loadpreview').click(function()
+    {  
+        $.ajax(
+        {
+          type: "POST",
+          url: "/preview",
+          // The key needs to match your method's input parameter (case-sensitive).
+          data: JSON.stringify({tunes: {title: blog_post.title.value,
+                                        summary: blog_post.body.value,
+                                        tags: blog_post.tags.value,
+                                        musicPlayerLink: blog_post.link.value,
+                                        authorName: name
+                                        }}),
+          contentType: "application/json; charset=utf-8",
+          dataType: "html",
+          success: function(data,status)
+          {
+            $('#previewarea').html(data);
+          },
+          failure: function(errMsg) 
+          {
+              console.log('there was an error: ' + errMsg);
+              alert(errMsg);
+          }
+        })
+    });
+    </script>
 	</body>
 </html>

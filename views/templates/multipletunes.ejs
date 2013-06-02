@@ -4,6 +4,6 @@
 	<p><%= tunes[i].summary %></p>
 	<p>Posted by <%= tunes[i].authorName %></p>
 	<%- tunes[i].musicPlayerLink %>
-	<a href="/<%= tunes[i].id%>">Read more...</a>
+	<a href="modal<%= tunes[i].id%>" role="button" class="btn" data-toggle="modal">Read more...</a>
 </div>
 <% } %>

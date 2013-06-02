@@ -26,7 +26,7 @@ exports.index = function(req, res)
   {
     console.log('tunes: ' + tunes);
 
-    res.render('index', { title: 'frontRoom', 
+    res.render('index', {   title: 'frontRoom', 
                             headerUrl : headerUrl, 
                             rubric : rubric,
                             logout : logout,
@@ -34,31 +34,3 @@ exports.index = function(req, res)
                         });
   })
 };
-
-/*
-exports.tune = function(req, res)
-{
-  blog_model.find({}, function(err, tunes) 
-  {
-    console.log('tunes: ' + tunes);
-    var result = new EJS({url: 'templates/tune.ejs'}).render(tune);
-    return result;
-  })  
-}*/
-
-/*if(req.user != null)
-  {
-    url='/backroom';
-    rubric='To the backroom, ' + req.user.fullName;
-    logout='logout';
-  }
-  else
-  {
-    url='/login';
-    rubric='login';
-    logout='';
-  }
-  res.render('index', { title: 'frontRoom', 
-                        url : url, 
-                        rubric : rubric,
-                        logout : logout});*/

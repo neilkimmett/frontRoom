@@ -46,12 +46,12 @@ app.get('/users', user.list);
 app.post('/users', user.addUser);
 app.get('/backroom', backroom.userWelcome);
 app.post('/backroom', backroom.postTune);
-app.get('/tunes', tunes.tune)
+app.get('/tunes', tunes.tunes);
+app.post('/preview', tunes.preview);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { successRedirect: '/',
                                       failureRedirect: '/login' }));
-
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
